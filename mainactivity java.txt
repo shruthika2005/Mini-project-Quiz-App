@@ -1,0 +1,71 @@
+package com.example.myapp;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    private TextView questionTextView, resultTextView;
+    private Button option1, option2, option3, option4;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize views
+        questionTextView = findViewById(R.id.questionTextView);
+        resultTextView = findViewById(R.id.resultTextView);
+        option1 = findViewById(R.id.option1);
+        option2 = findViewById(R.id.option2);
+        option3 = findViewById(R.id.option3);
+        option4 = findViewById(R.id.option4);
+
+        // Set button listeners
+        option1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer("Delhi");
+            }
+        });
+
+        option2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer("Punjab");
+            }
+        });
+
+        option3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer("Karnataka");
+            }
+        });
+
+        option4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer("Kerala");
+            }
+        });
+    }
+
+    private void checkAnswer(String selectedAnswer) {
+        String correctAnswer = "Delhi";
+
+        if (selectedAnswer.equals(correctAnswer)) {
+            resultTextView.setText("Correct!");
+            resultTextView.setVisibility(View.VISIBLE);
+            Toast.makeText(MainActivity.this, "Correct Answer!", Toast.LENGTH_SHORT).show();
+        } else {
+            resultTextView.setText("Incorrect! Try Again.");
+            resultTextView.setVisibility(View.VISIBLE);
+            Toast.makeText(MainActivity.this, "Incorrect Answer.", Toast.LENGTH_SHORT).show();
+        }
+    }
+}
